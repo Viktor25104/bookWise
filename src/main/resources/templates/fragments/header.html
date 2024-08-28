@@ -1,0 +1,102 @@
+<header class="header-section">
+    <div class="header-close">
+        <i class="fa fa-times"></i>
+    </div>
+    <div class="header-warp">
+        <a href="" class="site-logo">
+            <img th:src="@{/static/img/logo.png}" alt="">
+        </a>
+        <img th:src="@{/static/img/menu-icon.png}" alt="" class="menu-icon">
+        <ul class="main-menu">
+            <li th:classappend="${currentUri == '/gallery'} ? 'active'">
+                <a href="/all">Все книги</a>
+            </li>
+            <li>
+                <a href="/Business">Бизнесс книги</a>
+            </li>
+            <li>
+                <a href="/Classic">Классика</a>
+            </li>
+            <li>
+                <a href="/Children">Детям</a>
+            </li>
+            <li>
+                <a href="/Teenagers">Подросткам</a>
+            </li>
+            <li>
+                <a href="/Detectives">Детективы</a>
+            </li>
+            <li>
+                <a href="/Fantasy">Фэнтези</a>
+            </li>
+            <li>
+                <a href="/Fantastic">Фантастика</a>
+            </li>
+            <li>
+                <a href="/Contemporary-prose">Современная проза</a>
+            </li>
+            <li>
+                <a href="/Adventures">Приключения</a>
+            </li>
+            <li>
+                <a href="/Horror">Ужасы, мистика</a>
+            </li>
+            <li>
+                <a href="/Publicistic">Публицистическая литература</a>
+            </li>
+            <li>
+                <a href="/Love">Любовные романы</a>
+            </li>
+            <li>
+                <a href="/History">Исторические романы</a>
+            </li>
+            <li>
+                <a href="/Militants">Боевики, остросюжетные</a>
+            </li>
+            <li>
+                <a href="/Psychology">Книги по психологии</a>
+            </li>
+            <li>
+                <a href="/Narratives">Повести, рассказы</a>
+            </li>
+            <li>
+                <a href="/Poetry">Поэзия и драматургия</a>
+            </li>
+            <li>
+                <a href="/Science">Наука и образование</a>
+            </li>
+            <li>
+                <a href="/House">Дом, семья, хобби и досуг</a>
+            </li>
+            <li>
+                <a href="/Comics">Комиксы, манга, графические романы</a>
+            </li>
+            <li>
+                <a href="/Esoterica">Эзотерика</a>
+            </li>
+            <li>
+                <a href="/Culture">Культура и искусство</a>
+            </li>
+            <li>
+                <a href="/Humorous">Юмористическая</a>
+            </li>
+            <li>
+                <a href="/Religion">Религия</a>
+            </li>
+            <li>
+                <a href="/Dictionaries">Словари, справочники</a>
+            </li>
+            <li>
+                <a href="/Beauty">Красота и здоровье</a>
+            </li>
+            <li>
+                <a href="/Computer">Компьютерная литература</a>
+            </li>
+            <li>
+                <a href="/Erotica">Эротика и секс</a>
+            </li>
+
+        </ul>
+    </div>
+    <div class="copyright">M3GA 2024 @ All rights reserved</div>
+</header>
