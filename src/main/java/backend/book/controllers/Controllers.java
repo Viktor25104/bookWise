@@ -71,40 +71,4 @@ public class Controllers {
         return "gallery-single";
     }
 
-    public void addBooks(String path) {
-        File directory = new File(path);
-
-        // Фильтруем файлы с расширением .json
-        File[] jsonFiles = directory.listFiles((dir, name) -> name.endsWith(".json"));
-
-        if (jsonFiles != null) {
-            ObjectMapper objectMapper = new ObjectMapper();
-
-            for (File file : jsonFiles) {
-                try {
-                    // Читаем книги из файла
-                    List<Book> books = objectMapper.readValue(file, new TypeReference<List<Book>>() {});
-
-                    // Извлекаем имя файла без расширения как жанр
-                    String genre = file.getName().replaceFirst("[.][^.]+$", "");
-
-                    // Устанавливаем жанр для каждой книги
-                    for (Book book : books) {
-                        book.setGenre(genre);
-                    }
-
-                    // Сохраняем книги в базу данных
-                    bookRepo.saveAll(books);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-
-
-
-
 }
