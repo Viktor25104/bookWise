@@ -1,9 +1,28 @@
+version: '3.8'
+
+volumes:
+  bookWise:
+
 services:
   postgres:
     image: 'postgres:latest'
+    restart: always
     environment:
       - 'POSTGRES_DB=books'
       - 'POSTGRES_PASSWORD=secret'
       - 'POSTGRES_USER=bookWise'
+    volumes:
+      - bookWise:/var/lib/postgresql/data
     ports:
-      - '5432'
+      - '127.0.0.1:5432:5432'
+
+  app:
+    restart: always
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: 'jdbc:postgresql://postgres:5432/books'
+      JAVA_OPTS: '-Xmx512m'
