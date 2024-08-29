@@ -18,7 +18,9 @@ public class DataBaseFiller {
     private BookRepo bookRepo;
 
     public void addBooks(String path) {
+        System.out.println("Добавляю");
         File directory = new File(path);
+        System.out.println(path);
 
         File[] jsonFiles = directory.listFiles((dir, name) -> name.endsWith(".json"));
 
