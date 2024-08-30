@@ -110,7 +110,7 @@
 				<div style="margin-top: 10px" th:each="book : ${booksPage.content}"
 					 th:classappend="'gallery-item ' + ${book.getGenre()}">
 					<img th:src="${book.getImageUrl()}" th:alt="${book.getTitle()}">
-					<div class="hover-links">
+					<div style="width: 200px" class="hover-links">
 						<a th:href="@{'/book/' + ${book.getId()}}" class="site-btn sb-light">Next</a>
 					</div>
 				</div>

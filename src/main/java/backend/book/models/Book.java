@@ -28,11 +28,12 @@ public class Book {
     private float rating;
     private int year;
 
+    @Column(name = "is_bestseller")
+    @JsonProperty("is_bestseller")
+    private boolean isBestseller;
+
     @Column(columnDefinition = "TEXT")
     private String genre;
-
-    @JsonProperty("is_bestseller")
-    private boolean is_bestseller;
 
     @Column(columnDefinition = "TEXT")
     private String description;
@@ -44,12 +45,12 @@ public class Book {
     public Book() {
     }
 
-    public Book(String title, String author, String isbn, int year, boolean is_bestseller, String description, String imageUrl) {
+    public Book(String title, String author, String isbn, int year, boolean isBestseller, String description, String imageUrl) {
         this.title = title;
         this.author = author;
         this.isbn = isbn;
         this.year = year;
-        this.is_bestseller = is_bestseller;
+        this.isBestseller = isBestseller;
         this.description = description;
         this.imageUrl = imageUrl;
     }
