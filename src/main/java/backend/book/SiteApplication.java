@@ -14,27 +14,8 @@ import org.springframework.context.annotation.Bean;
 @EntityScan("backend.book.models")
 public class SiteApplication {
 
-    @Autowired
-    private BookRepo bookRepo;
-
-    @Autowired
-    private DataBaseFiller dataBaseFiller;
-
-    @Value("${books.data.path}")
-    private String booksDataPath;
-
     public static void main(String[] args) {
         SpringApplication.run(SiteApplication.class, args);
-    }
-
-    @Bean
-    public ApplicationRunner applicationRunner() {
-        return args -> {
-            if (bookRepo.count() == 0) {
-                dataBaseFiller.addBooks(booksDataPath);
-                System.out.println("Books data loaded");
-            }
-        };
     }
 
 }

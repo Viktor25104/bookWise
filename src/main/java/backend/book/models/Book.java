@@ -37,9 +37,7 @@ public class Book {
     @JsonProperty("is_bestseller")
     private boolean isBestseller;
 
-    @ElementCollection
-    @Column(columnDefinition = "TEXT")
-    private List<String> tags = new ArrayList<>();
+    private String tags;
 
 
     @Column(columnDefinition = "TEXT")

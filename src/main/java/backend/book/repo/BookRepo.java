@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BookRepo extends JpaRepository<Book, Long> {
-    @Query("SELECT b FROM Book b JOIN b.tags t WHERE t = :tag")
+    @Query("SELECT b FROM Book b WHERE b.tags LIKE CONCAT('%', :tag, '%')\n")
     Page<Book> findByTag(@Param("tag") String tag, Pageable pageable);
 }
