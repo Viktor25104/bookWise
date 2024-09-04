@@ -18,9 +18,7 @@ public class DataBaseFiller {
     private BookRepo bookRepo;
 
     public void addBooks(String path) {
-        System.out.println("Добавляю");
         File directory = new File(path);
-        System.out.println(path);
 
         File[] jsonFiles = directory.listFiles((dir, name) -> name.endsWith(".json"));
 
@@ -30,12 +28,6 @@ public class DataBaseFiller {
             for (File file : jsonFiles) {
                 try {
                     List<Book> books = objectMapper.readValue(file, new TypeReference<List<Book>>() {});
-
-                    String genre = file.getName().replaceFirst("[.][^.]+$", "");
-
-                    for (Book book : books) {
-                        book.setGenre(genre);
-                    }
 
                     bookRepo.saveAll(books);
 

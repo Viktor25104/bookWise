@@ -20,7 +20,6 @@ public class Controllers {
     @Autowired
     private BookRepo bookRepo;
 
-    // Кастомный компаратор для сортировки книг
     private final Comparator<Book> bookComparator = Comparator.comparing(Book::isBestseller)
             .reversed()
             .thenComparing(Comparator.comparing(Book::getRating).reversed())
@@ -31,29 +30,34 @@ public class Controllers {
         Pageable pageable = PageRequest.of(0, 20, Sort.by("isBestseller").descending().and(Sort.by("rating").descending()).and(Sort.by("title")));
         Page<Book> books = bookRepo.findAll(pageable);
         model.addAttribute("booksPage", books);
-        model.addAttribute("genre", "all");
+        model.addAttribute("tag", "all");
         return "gallery";
     }
 
-    @GetMapping("/{genre}")
-    public String getBooksByGenre(@PathVariable("genre") String genre, Model model) {
+    @GetMapping("/{tag}")
+    public String getBooksByTag(@PathVariable("tag") String tag, Model model) {
         Pageable pageable = PageRequest.of(0, 20, Sort.by("isBestseller").descending().and(Sort.by("rating").descending()).and(Sort.by("title")));
-        Page<Book> books = bookRepo.findByGenre(genre, pageable);
+        Page<Book> books;
+        if (tag.equals("all")) {
+            books = bookRepo.findAll(pageable);
+        } else {
+            books = bookRepo.findByTag(tag, pageable);
+        }
         model.addAttribute("booksPage", books);
-        model.addAttribute("genre", genre.equals("all") ? "all" : genre);
+        model.addAttribute("tag", tag.equals("all") ? "all" : tag);
         return "gallery";
     }
 
-    @GetMapping("/{genre}/{pageNumber}")
+    @GetMapping("/{tag}/{pageNumber}")
     public String getBooksPage(@PathVariable("pageNumber") int pageNumber,
-                               @PathVariable("genre") String genre, Model model) {
+                               @PathVariable("tag") String tag, Model model) {
         Pageable pageable = PageRequest.of(pageNumber, 20, Sort.by("isBestseller").descending().and(Sort.by("rating").descending()).and(Sort.by("title")));
         Page<Book> booksPage;
 
-        if (genre.equals("all")) {
+        if (tag.equals("all")) {
             booksPage = bookRepo.findAll(pageable);
         } else {
-            booksPage = bookRepo.findByGenre(genre, pageable);
+            booksPage = bookRepo.findByTag(tag, pageable);
         }
 
         model.addAttribute("booksPage", booksPage);
@@ -65,6 +69,8 @@ public class Controllers {
     public String singleBook(@PathVariable("id") Long id, Model model) {
         Book book = bookRepo.findById(id).orElse(null);
         model.addAttribute("book", book);
+        assert book != null;
+        model.addAttribute("tags", String.join(", ", book.getTags()));
         return "gallery-single";
     }
 }

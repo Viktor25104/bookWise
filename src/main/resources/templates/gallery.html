@@ -108,7 +108,7 @@
 		<div class="page-section gallery-page">
 			<div class="portfolio-gallery">
 				<div style="margin-top: 10px" th:each="book : ${booksPage.content}"
-					 th:classappend="'gallery-item ' + ${book.getGenre()}">
+					 th:classappend="'gallery-item ' + ${tag}">
 					<img th:src="${book.getImageUrl()}" th:alt="${book.getTitle()}">
 					<div style="width: 200px" class="hover-links">
 						<a th:href="@{'/book/' + ${book.getId()}}" class="site-btn sb-light">Next</a>
@@ -117,7 +117,7 @@
 			</div>
 
 			<div class="arrow-6">
-				<a th:if="${booksPage.number != 0}" th:href="@{'/' + ${genre} + '/' + ${booksPage.number - 1}}">
+				<a th:if="${booksPage.number != 0}" th:href="@{'/' + ${tag} + '/' + ${booksPage.number - 1}}">
 					<svg width="18px" height="17px" viewBox="0 0 18 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 						<g transform="translate(8.500000, 8.500000) scale(-1, 1) translate(-8.500000, -8.500000)">
 							<polygon class="arrow-6-pl" points="16.3746667 8.33860465 7.76133333 15.3067621 6.904 14.3175671 14.2906667 8.34246869 6.908 2.42790698 7.76 1.43613596"></polygon>
@@ -129,7 +129,7 @@
 				<span style="font-size: 24px; font-weight: bold; color: #007bff">
 					<span th:text="${booksPage.number + 1}"></span> ... <span th:text="${booksPage.totalPages}"></span>
 				</span>
-				<a th:if="${booksPage.number != booksPage.totalPages - 1}" th:href="@{'/' + ${genre} + '/' + ${booksPage.number + 1}}">
+				<a th:if="${booksPage.number != booksPage.totalPages - 1}" th:href="@{'/' + ${tag} + '/' + ${booksPage.number + 1}}">
 					<svg width="18px" height="17px" viewBox="-1 0 18 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 						<g>
 							<polygon class="arrow-6-pl" points="16.3746667 8.33860465 7.76133333 15.3067621 6.904 14.3175671 14.2906667 8.34246869 6.908 2.42790698 7.76 1.43613596"></polygon>

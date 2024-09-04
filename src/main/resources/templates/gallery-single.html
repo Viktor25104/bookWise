@@ -56,13 +56,18 @@
 					</div>
 					<div class="col-xl-6 p-0">
 						<div class="gallery-single-text">
-							<span th:text="${book.getGenre()}"></span>
+							<span th:if="${book.isBestseller()}">Бестселлер</span>
+							<span th:if="${!book.isBestseller()}">Добавлено M3GA</span>
 							<h2 th:text="${book.getTitle()}"></h2>
 							<ul>
 								<li style="display: flex"><span>Автор: </span><p th:text="${book.getAuthor()}"></p></li>
-								<li style="display: flex"><span>Год издания: </span><p th:text="${book.getYear()}"></p></li>
+								<li style="display: flex"><span>Год издания: </span><p th:text="${book.getPublication_year()}"></p></li>
 								<li style="display: flex" th:if="${book.getIsbn() != null}"><span>ISBN: </span><p th:text="${book.getIsbn()}"></p></li>
-								<li style="display: flex"><span>Rating: </span><p th:text="${book.getRating()}"></p></li>
+								<li style="display: flex"><span>Рейтинг: </span><p th:text="${book.getRating()}"></p></li>
+								<li style="display: flex">
+									<span>Теги: </span>
+									<p th:text="${tags}"></p>
+								</li>
 							</ul>
 							<p th:text="${book.getDescription()}"></p>
 						</div>
