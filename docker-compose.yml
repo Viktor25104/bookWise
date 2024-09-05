@@ -2,8 +2,6 @@ version: '3.8'
 services:
   app:
     build: .
-    ports:
-      - "8080:8080"
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://dpg-crc36jqj1k6c738gfneg-a.frankfurt-postgres.render.com:5432/books_0oi4
       - SPRING_DATASOURCE_USERNAME=book
