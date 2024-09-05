@@ -6,6 +6,7 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://dpg-crc36jqj1k6c738gfneg-a.frankfurt-postgres.render.com:5432/books_0oi4
       - SPRING_DATASOURCE_USERNAME=book
       - SPRING_DATASOURCE_PASSWORD=Du0rJVtbGxQLQ7pB1x1qqFVlW3xLPrn8
+      - PORT=${PORT}
     networks:
       - app-network
       
