@@ -1,8 +1,10 @@
 package backend.book.controllers;
 
+import backend.book.dataBase.DataBaseFiller;
 import backend.book.models.Book;
 import backend.book.repo.BookRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -19,6 +21,12 @@ public class Controllers {
 
     @Autowired
     private BookRepo bookRepo;
+
+    @Autowired
+    private DataBaseFiller dataBaseFiller;
+
+    @Value("${books.data.path}")
+    private String booksDataPath;
 
     private final Comparator<Book> bookComparator = Comparator.comparing(Book::isBestseller)
             .reversed()

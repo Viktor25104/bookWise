@@ -1,6 +1,7 @@
 package backend.book.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,7 +32,7 @@ public class Book {
     private float rating;
 
     @JsonProperty("year")
-    private int publication_year;
+    private Integer publication_year;
 
     @Column(name = "is_bestseller")
     @JsonProperty("is_bestseller")
